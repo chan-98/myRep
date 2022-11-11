@@ -40,20 +40,26 @@
 
 
 samples=("$@")
-echo The samples are
+echo This programs performs QC on the raw data, trimming and QC on the trimmed data of the samples
 echo $@
-echo
 
 mkdir fastqc-rawout trim-out fastqc-trimout
 
 for i in ${samples[@]}
 do
 	echo $i
+	echo STARTING FASTQC ON THE RAW DATA
 	singularity exec --bind /opt fastqc.img fastqc "$i"_F.fastq "$i"_R.fastq -o fastqc-rawout --extract
+	singularity exec --bind /opt fastqc.img fastqc		#opens the report window
 	echo
+	echo STARTING TRIMMOMATIC ON THE DATA
 	singularity exec --bind /opt trimmomatic.img trimmomatic PE -threads 4 -trimlog trimlogfile_"$i".log "$i"_F.fastq "$i"_R.fastq trim-out/"$i"_F_paired.fastq trim-out/"$i"_F_unpaired.fastq trim-out/"$i"_R_paired.fastq trim-out/"$i"_R_unpaired.fastq ILLUMINACLIP:all_adapters.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 CROP:240 HEADCROP:19 MINLEN:50 
 	echo
+	echo STARTING FASTQC ON THE TRIMMED DATA
 	singularity exec --bind /opt fastqc.img fastqc trim-out/"$i"_F_paired.fastq trim-out/"$i"_F_unpaired.fastq trim-out/"$i"_R_paired.fastq trim-out/"$i"_R_unpaired.fastq -o fastqc-trimout --extract
+	singularity exec --bind /opt fastqc.img fastqc 		#opens the report window
+	echo
 	echo
 done
-
+echo
+echo Completed analysis of all samples
