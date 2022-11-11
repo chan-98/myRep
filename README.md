@@ -3,7 +3,7 @@ Contains records of bash scripts and NF scripts written as part of training.
 
 ## practice
 
-Date: 09 Nov 2022
+### Date: 09 Nov 2022
 
 TRIMMING AND QUALITY CHECK OF NGS DATASET
 
@@ -15,3 +15,12 @@ Performs trimming of adapter sequences
 And Fastqc of the trimmed dataset
 
 Outputs are stored in separate directories.
+
+### Date: 11 Nov 2022
+
+TRIMMING AND QUALITY CHECK OF NGS DATASET
+
+Improved script to take any sample ID of paired end data and perform:
+1. FastQC of the raw data
+2. Trimming of the raw data
+3. FastQC of the trimmed data
