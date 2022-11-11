@@ -4,9 +4,9 @@
 
 ## {samples[i]} is an array
 
-echo ${samples[@]}    #This works
-echo $@               #This works
-echo
+#echo ${samples[@]}    #This works
+#echo $@               #This works
+#echo
 
 #for ((i=0; i<${#samples[@]}; i++)); do
 #	echo ${samples[i]}			#Also works
@@ -42,6 +42,7 @@ echo
 samples=("$@")
 echo The samples are
 echo $@
+echo
 
 mkdir fastqc-rawout trim-out fastqc-trimout
 
