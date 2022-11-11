@@ -5,7 +5,7 @@ Contains records of bash scripts and NF scripts written as part of training.
 
 ### Date: 09 Nov 2022
 
-trim_and_qc.sh
+`trim_and_qc.sh`
 
 TRIMMING AND QUALITY CHECK OF NGS DATASET
 
@@ -20,7 +20,7 @@ Outputs are stored in separate directories.
 
 ### Date: 11 Nov 2022
 
-test_auto.sh
+`test_auto.sh`
 
 TRIMMING AND QUALITY CHECK OF NGS DATASET
 
